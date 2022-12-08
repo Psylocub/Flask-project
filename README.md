@@ -1,8 +1,4 @@
-# Python classes practice
-
-## Homework
-- Create models, views and forms for Plants
-- Create simple templates (for example you have auth logic)
+# Flask template project
 
 ## Local setup
 
