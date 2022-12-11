@@ -86,10 +86,10 @@ def reset_password():
             return redirect(url_for("main.index"))
         flash("User not found.", "danger")
     elif form.is_submitted():
-        flash("The given data was invalid.", "danger")
+        flash("User with this email not found.", "danger")
     return render_template("auth/reset_password.html", form=form)
 
-@auth_blueprint.route("/password-reset/<reset_password_uuid>", methods = ["GET", "POST"])
+@auth_blueprint.route("/password-change/<reset_password_uuid>", methods = ["GET", "POST"])
 def password_reset(reset_password_uuid: str):
     user: User = User.query.filter(
             User.reset_password_uuid == reset_password_uuid
@@ -106,5 +106,5 @@ def password_reset(reset_password_uuid: str):
         flash("Login successful.", "success")
         return redirect(url_for("main.index"))
     elif form.is_submitted():
-        flash("Wrong user data was invalid.", "danger")
-    return render_template("auth/password_reset.html", form=form, reset_password_uuid=reset_password_uuid)
+        flash("Data was invalid.", "danger")
+    return render_template("auth/password_change.html", form=form, reset_password_uuid=reset_password_uuid)

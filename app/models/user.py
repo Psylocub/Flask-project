@@ -8,7 +8,6 @@ from app.utils import generate_password_reset_id
 
 
 class User(db.Model, ModelMixin, UserMixin):
-
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -16,10 +15,10 @@ class User(db.Model, ModelMixin, UserMixin):
     username = db.Column(db.String(255), nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    active = db.Column(db.Boolean, default = True)
+    active = db.Column(db.Boolean, default=True)
     first_name = db.Column(db.String(255), nullable=True)
     last_name = db.Column(db.String(255), nullable=True)
-    reset_password_uuid = db.Column(db.String(64), default = generate_password_reset_id)
+    reset_password_uuid = db.Column(db.String(64), default=generate_password_reset_id)
 
     @hybrid_property
     def password(self):
@@ -31,7 +30,8 @@ class User(db.Model, ModelMixin, UserMixin):
 
     @classmethod
     def authenticate(cls, user_identifier, password):
-        user = cls.query.filter(db.or_(func.lower(cls.username) == func.lower(user_identifier), func.lower(cls.email) == func.lower(user_identifier))).first()
+        user = cls.query.filter(db.or_(func.lower(cls.username) == func.lower(user_identifier),
+                                       func.lower(cls.email) == func.lower(user_identifier))).first()
         if user is not None and check_password_hash(user.password, password):
             return user
 
