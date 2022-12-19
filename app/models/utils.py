@@ -6,3 +6,8 @@ class ModelMixin(object):
         db.session.add(self)
         db.session.commit()
         return self
+
+    def delete_mix(self):
+        db.session.delete(self)
+        db.session.commit()
+        return self

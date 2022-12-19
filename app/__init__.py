@@ -14,7 +14,7 @@ migration = Migrate()
 def create_app(environment="development"):
 
     from config import config
-    from app.views import auth_blueprint, main_blueprint, recipient_blueprint, upload_blueprint
+    from app.views import auth_blueprint, main_blueprint, recipient_blueprint, upload_blueprint, company_blueprint
     from app.models import User, AnonymousUser
 
     # Instantiate app
@@ -35,6 +35,7 @@ def create_app(environment="development"):
     app.register_blueprint(main_blueprint)
     app.register_blueprint(recipient_blueprint)
     app.register_blueprint(upload_blueprint)
+    app.register_blueprint(company_blueprint)
 
     @login_manager.user_loader
     def get_user(id):

@@ -1,10 +1,9 @@
 from flask import Blueprint, render_template
 from flask_login import login_required
-
 from app.models import Recipient
 
-recipient_blueprint = Blueprint("recipient", __name__)
 
+recipient_blueprint = Blueprint("recipient", __name__)
 
 @recipient_blueprint.route("/recipients", methods=["GET", "POST"])
 @login_required

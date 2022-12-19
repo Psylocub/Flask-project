@@ -5,6 +5,7 @@ from sqlalchemy import func
 from app.models import User
 from app.forms import LoginForm, RegistrationForm, ProfileForm, ForgotPasswordForm, PasswordResetForm
 
+
 auth_blueprint = Blueprint("auth", __name__)
 
 @auth_blueprint.route("/login", methods = ["GET", "POST"])
@@ -51,12 +52,11 @@ def profile():
     user: User = User.query.get(current_user.id)
     form = ProfileForm()
     if form.validate_on_submit():
-        user.first_name=form.first_name.data,
-        user.last_name=form.last_name.data,
-        user.username=form.username.data,
-        user.email=form.email.data,
+        user.first_name = form.first_name.data
+        user.last_name = form.last_name.data
+        user.username = form.username.data
+        user.email = form.email.data
         user.save()
-
         flash("Profile has been successfully updated", "info")
         return redirect(url_for("main.index"))
     elif form.is_submitted():

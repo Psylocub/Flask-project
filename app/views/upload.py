@@ -3,8 +3,8 @@ from flask_login import login_required
 from app.forms import UploadForm
 from app.controllers import upload_recipient_controller
 
-upload_blueprint = Blueprint("upload", __name__)
 
+upload_blueprint = Blueprint("upload", __name__)
 
 @upload_blueprint.route("/upload-csv", methods=["GET", "POST"])
 @login_required

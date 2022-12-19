@@ -2,8 +2,19 @@
 
 {% block content %}
 <div class="container">
-  <h1>Welcome!</h1>
+  <h1>Companyes</h1>
   <hr>
-  <p>Add some content here!</p>
+  {% for company in companies %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ company.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ company.location }}</h6>
+      </div>
+      <div>
+          <a href="/delete_company/{{ company.id }}" class="card-link">Delete</a>
+          <a href="/update_company/{{ company.id }}" class="card-link">Update</a>
+      </div>
+    </div>
+  {% endfor %}
 </div>
 {% endblock %}
