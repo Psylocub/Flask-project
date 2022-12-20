@@ -5,16 +5,16 @@ from flask_login import LoginManager
 from werkzeug.exceptions import HTTPException
 from flask_migrate import Migrate
 
-
 # Initialize instances
 login_manager = LoginManager()
 db = SQLAlchemy()
 migration = Migrate()
 
-def create_app(environment="development"):
 
+def create_app(environment="development"):
     from config import config
-    from app.views import auth_blueprint, main_blueprint, recipient_blueprint, upload_blueprint, company_blueprint
+    from app.views import auth_blueprint, main_blueprint, recipient_blueprint, upload_blueprint, company_blueprint, \
+        employee_blueprint
     from app.models import User, AnonymousUser
 
     # Instantiate app
@@ -36,6 +36,7 @@ def create_app(environment="development"):
     app.register_blueprint(recipient_blueprint)
     app.register_blueprint(upload_blueprint)
     app.register_blueprint(company_blueprint)
+    app.register_blueprint(employee_blueprint)
 
     @login_manager.user_loader
     def get_user(id):

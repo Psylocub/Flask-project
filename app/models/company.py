@@ -10,3 +10,6 @@ class Company(db.Model, ModelMixin):
     name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     employees = db.relationship("Employee", back_populates="company")
+
+    def __repr__(self):
+        return self.name

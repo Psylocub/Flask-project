@@ -20,13 +20,13 @@ def add_company():
     elif request.method == "GET":
         return render_template("company/add_company.html", form=form)
 
-@company_blueprint.route("/delete_company/<int:id>")
+@company_blueprint.route("/delete-company/<int:id>")
 def delete_company(id):
     company_to_delete = Company.query.filter_by(id=id).first()
     company_to_delete.delete_mix()
     return redirect(url_for("main.index"))
 
-@company_blueprint.route("/update_company/<int:id>", methods=["GET", "POST"])
+@company_blueprint.route("/update-company/<int:id>", methods=["GET", "POST"])
 def update_company(id):
     company_to_update = Company.query.filter_by(id=id).first()
     form = AddCompanyForm()

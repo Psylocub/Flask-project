@@ -5,14 +5,21 @@
   <h1>Companyes</h1>
   <hr>
   {% for company in companies %}
-    <div class="card">
-      <div class="card-body">
+    <div class="col-6" id="up">
+      <div class="p-3 border bg-light">
         <h5 class="card-title">{{ company.name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ company.location }}</h6>
-      </div>
-      <div>
-          <a href="/delete_company/{{ company.id }}" class="card-link">Delete</a>
-          <a href="/update_company/{{ company.id }}" class="card-link">Update</a>
+          {% set count = 0 %}
+          {% for employee in employees %}
+              {% if employee.company_id == company.id %}
+                  {% set count = count + 1 %}
+              {% endif %}
+          {% endfor %}
+          {{ count }}
+        <div>
+          <a href="/delete-company/{{ company.id }}" button type="button" class="btn btn-secondary btn-sm">Delete</a>
+          <a href="/update-company/{{ company.id }}" button type="button" class="btn btn-primary btn-sm">Update</a>
+        </div>
       </div>
     </div>
   {% endfor %}

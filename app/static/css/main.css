@@ -8,3 +8,7 @@ body {
 * {
     border-radius: 0 !important;
 }
+
+#up {
+  margin-bottom: 15px;
+}
