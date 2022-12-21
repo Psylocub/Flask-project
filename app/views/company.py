@@ -41,7 +41,7 @@ def update_company(id):
     elif request.method == "GET":
         form.name.data = company_to_update.name
         form.location.data = company_to_update.location
-    return render_template("company/update_company.html", id=id, form=form)
+    return render_template("company/add_company.html", id=id, form=form)
 
 
 

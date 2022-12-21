@@ -5,20 +5,18 @@
   <h1>Companyes</h1>
   <hr>
   {% for company in companies %}
-    <div class="col-6" id="up">
-      <div class="p-3 border bg-light">
-        <h5 class="card-title">{{ company.name }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ company.location }}</h6>
-          {% set count = 0 %}
-          {% for employee in employees %}
-              {% if employee.company_id == company.id %}
-                  {% set count = count + 1 %}
-              {% endif %}
-          {% endfor %}
-          {{ count }}
+    <div class="col-4" id="up">
+      <div class="p-3 border bg-light row justify-content-between">
         <div>
-          <a href="/delete-company/{{ company.id }}" button type="button" class="btn btn-secondary btn-sm">Delete</a>
-          <a href="/update-company/{{ company.id }}" button type="button" class="btn btn-primary btn-sm">Update</a>
+          <h5 class="card-title">{{ company.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ company.location }}</h6>
+          <div>
+            <a href="/delete-company/{{ company.id }}" button type="button" class="btn btn-secondary btn-sm">Delete</a>
+            <a href="/update-company/{{ company.id }}" button type="button" class="btn btn-primary btn-sm">Update</a>
+          </div>
+        </div>
+        <div>
+          <h5><a href="/staff/{{ company.name }}">{{ company.employees|length }} employees</a></h5>
         </div>
       </div>
     </div>

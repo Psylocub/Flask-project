@@ -12,6 +12,7 @@ class Employee(db.Model, ModelMixin):
     phone = db.Column(db.String(16), nullable=True, unique=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
     birthday = db.Column(db.DateTime(), nullable=True)
-    company_id = db.Column(db.Integer, db.ForeignKey("company.id"), nullable=False)
+    company_id = db.Column(db.Integer, db.ForeignKey("company.id", ondelete="CASCADE"), nullable=False)
     company = db.relationship("Company", back_populates="employees")
+
 
