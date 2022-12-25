@@ -7,7 +7,7 @@
                 <h4 class="card-title">Employee data</h4>
             </div>
             <div class="card-body">
-                <form class="form" role="form" {% if employee %}action="{{ url_for('employee.update_employee') }}"
+                <form class="form" role="form" {% if employee %}action="{{ url_for('employee.update_employee', id=id) }}"
                       {% else %}action="{{ url_for('employee.add_employee') }}"{% endif %} method="POST">
                     <div class="form-group">
                         {{ form.name.label }}

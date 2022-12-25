@@ -17,17 +17,24 @@ class BaseConfig:
         pass
 
 
-class DevelopmentConfig(BaseConfig):
+class MailConfig:
+    MAIL_SERVER = os.getenv("MAIL_SERVER")
+    MAIL_PORT = os.getenv("MAIL_PORT")
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+    MAIL_USE_SSL = True
+    MAIL_USE_TLS = False
+
+class DevelopmentConfig(BaseConfig, MailConfig):
 
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.getenv("DEVELOPMENT_DATABASE_URL", "sqlite:///" + os.path.join(base_dir, "development.sqlite3"),)
 
 
-class ProductionConfig(BaseConfig):
+class ProductionConfig(BaseConfig, MailConfig):
 
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///" + os.path.join(base_dir, "production.sqlite3"))
     WTF_CSRF_ENABLED = True
-
 
 config = dict(development=DevelopmentConfig, production=ProductionConfig)

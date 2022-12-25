@@ -7,15 +7,14 @@ from app import db
 
 from pydantic import BaseModel, validator
 
-from app.models import Recipient
+from app.models import Employee, Company
 
 
-class RecipientRow(BaseModel):
-    email: Optional[str]
-    first_name: Optional[str]
-    last_name: Optional[str]
+class EmployeeRow(BaseModel):
+    name: Optional[str]
+    position: Optional[str]
     phone: Optional[str]
-    address: Optional[str]
+    email: Optional[str]
     birthday: Optional[date]
 
     @validator("birthday", pre=True,)
@@ -23,7 +22,7 @@ class RecipientRow(BaseModel):
         return datetime.strptime(value, "%d.%m.%Y").date()
 
 
-def upload_recipient_controller(input_file: FileStorage):
+def upload_employee_controller(input_file: FileStorage):
     with tempfile.NamedTemporaryFile(delete=True) as temp_file:
         file_path = temp_file.name
         with open(file_path, "wb") as examined_file:
@@ -37,15 +36,14 @@ def upload_recipient_controller(input_file: FileStorage):
                 name.lower().replace(" ", "_") for name in reader.fieldnames
             ]
             for row in reader:
-                r: RecipientRow = RecipientRow.parse_obj(row)
+                r: EmployeeRow = EmployeeRow.parse_obj(row)
                 r_exist = (
-                    db.session.query(Recipient)
+                    db.session.query(Employee)
                     .filter_by(
-                        email=r.email,
-                        first_name=r.first_name,
-                        last_name=r.last_name,
+                        name=r.name,
+                        position=r.position,
                         phone=r.phone,
-                        address=r.address,
+                        email=r.email,
                         birthday=r.birthday,
                     )
                     .first()
@@ -53,6 +51,6 @@ def upload_recipient_controller(input_file: FileStorage):
                 if r_exist:
                     pass
                 else:
-                    recipient = Recipient(**r.dict())
-                    recipient.save()
+                    employee = Employee(**r.dict())
+                    employee.save()
             db.session.commit()

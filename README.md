@@ -42,3 +42,13 @@ $ flask run
 
 ```
 $ docker-compose up -d --build
+```
+
+## SMTP server setting
+```
+Set follow configuration in .env file: 
+MAIL_SERVER, 
+MAIL_PORT,
+MAIL_USERNAME,
+MAIL_PASSWORD.
+```
