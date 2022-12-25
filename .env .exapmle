@@ -1,0 +1,22 @@
+APP_NAME="YOUR APP NAME, for example: some-app"
+SECRET_KEY="YOUR SECRET KEY GOES HERE, for example: fdjghsirug48yg8"
+
+# Database
+# Database details for postgres container
+POSTGRES_USER=", for example: postgre"
+POSTGRES_PASSWORD="YOUR POSTGRES USER PASSWORD, for example: password"
+POSTGRES_DB="YOUR POSTGRES DB NAME, for example: db"
+POSTGRES_PORT="YOUR POSTGRES PORT, for example: 2520"
+
+# Database URL to use
+DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+DEVELOPMENT_DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@127.0.0.1:${POSTGRES_PORT}/${POSTGRES_DB}
+
+# WEB app
+WEB_PORT=5000
+
+# Email
+MAIL_SERVER="YOUR SMTP EMAIL SERVER, for example: smtp.mail.com"
+MAIL_PORT="YOUR MAIL PORT, for example: 495"
+MAIL_USERNAME="YOUR EMAIL LOGIN, for example: myname@mail.com"
+MAIL_PASSWORD="YOUR EMAIL PASSWORD, for example: qwerty"

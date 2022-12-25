@@ -20,6 +20,11 @@ $ source .venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
+**Set .env file**
+```
+$ Rename .ENV.EXAPMLE to .ENV and fill all data
+```
+
 **Run database container**
 
 ```
