@@ -30,6 +30,7 @@ $ docker-compose up -d db
 
 ```
 $ flask db migrate
+$ flask db upgrade
 ```
 
 **Run application**
